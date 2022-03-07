@@ -15,3 +15,15 @@ class GameOfLife:
         self.rows = int(width / scale)
 
         self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
+
+    def run(self):
+        self.draw_grid()
+
+    def draw_grid(self):
+        for row in range(self.rows):
+            for col in range(self.columns):
+                # Check if cell is True/False and fill accordingly
+                if self.grid[row, col]:
+                    pygame.draw.rect(self.surface, self.active_color, [row * self.scale, col * self.scale, self.scale - self.offset, self.scale - self.offset])
+                else:
+                    pygame.draw.rect(self.surface, self.inactive_color, [row * self.scale, col * self.scale, self.scale - self.offset, self.scale - self.offset])
