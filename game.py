@@ -18,6 +18,7 @@ class GameOfLife:
 
     def run(self):
         self.draw_grid()
+        self.update_grid()
 
     def draw_grid(self):
         for row in range(self.rows):
