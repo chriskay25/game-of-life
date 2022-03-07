@@ -1,18 +1,17 @@
-import sys
 import pygame
+import numpy as np
 
-pygame.init()
+class GameOfLife:
+    def __init__(self, surface, width=1920, height=1080, scale=10, offset=1, active_color=(255, 255, 255), inactive_color=(50, 50, 50)):
+        self.surface = surface
+        self.width = width
+        self.height = height
+        self.scale = scale
+        self.offset = offset
+        self.active_color = active_color
+        self.inactive_color = inactive_color
 
-WIDTH, HEIGHT = 1920, 1080
+        self.columns = int(height / scale)
+        self.rows = int(width / scale)
 
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-
-running = True
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            sys.exit()
-
-    screen.fill((255,255,255))
-    pygame.display.update()
+        self.grid = np.random.randint(0, 2, size=(self.rows, self.columns), dtype=bool)
